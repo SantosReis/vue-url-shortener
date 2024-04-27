@@ -34,12 +34,13 @@ onMounted(async () => {
 const handleShorternersSubmitted = (shortenerData) => {
 
   axios.post(API_URL+'/api/shortener', {
-    url: shorternerData.text,
+    url: shortenerData.url,
   })
   .then(function (response) {
     console.log(response);
+    console.log(response.data.generated);
 
-    if(!response.generated){
+    if(!response.data.generated){
       toast.error("Shortener already exists!");
       return false;
     }
@@ -50,6 +51,7 @@ const handleShorternersSubmitted = (shortenerData) => {
   .catch(function (error) {
     console.log(error);
 
+    //TODO sanatize errors in a better way
     if(error.response.data.errors.url[0]){
       toast.error(error.response.data.errors.url[0]);
     }

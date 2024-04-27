@@ -2,7 +2,7 @@
   <h3>Add url shortener</h3>
   <form id="form" @submit.prevent="onSubmit">
     <div class="form-control">
-      <input type="text" id="text" v-model="text" placeholder="Enter text..." />
+      <input type="text" id="url" v-model="url" placeholder="Enter url address..." />
     </div>
     <div class="form-control">
     </div>
@@ -13,25 +13,22 @@
 import { ref } from "vue";
 import { useToast } from "vue-toastification";
 
-const text = ref("");
-// const amount = ref("");
-
+const url = ref("");
 const emit = defineEmits(["shorternersSubmitted"]);
-
 const toast = useToast();
 
 const onSubmit = () => {
-  if (!text.value) {
+  if (!url.value) {
     toast.error("Field must be filled");
     return;
   }
 
-  const shorternerData = {
-    text: text.value,
+  const shortenerData = {
+    url: url.value,
   };
 
-  emit("shorternersSubmitted", shorternerData);
+  emit("shorternersSubmitted", shortenerData);
 
-  text.value = "";
+  url.value = "";
 };
 </script>
