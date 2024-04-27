@@ -6,7 +6,7 @@
     </div>
     <div class="form-control">
     </div>
-    <button class="btn">Add transaction</button>
+    <button class="btn">Add shortener</button>
   </form>
 </template>
 <script setup>
@@ -16,7 +16,7 @@ import { useToast } from "vue-toastification";
 const text = ref("");
 // const amount = ref("");
 
-const emit = defineEmits(["transactionSubmitted"]);
+const emit = defineEmits(["shorternersSubmitted"]);
 
 const toast = useToast();
 
@@ -26,13 +26,12 @@ const onSubmit = () => {
     return;
   }
 
-  const transactionData = {
+  const shorternerData = {
     text: text.value,
   };
 
-  emit("transactionSubmitted", transactionData);
+  emit("shorternersSubmitted", shorternerData);
 
   text.value = "";
-  // amount.value = "";
 };
 </script>

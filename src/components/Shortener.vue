@@ -2,15 +2,15 @@
   <h3>History</h3>
   <ul id="list" class="list">
     <li
-      v-for="transaction in transactions"
-      :key="transaction.id"
+      v-for="shorterner in shorterners"
+      :key="shorterner.id"
       :class="'plus'"
     >
-      <a :href="transaction.long">{{ transaction.short }}</a>
-      <button @click="deleteTransaction(transaction.id)" class="delete-btn">
+      <a :href="shorterner.long">{{ shorterner.short }}</a>
+      <button @click="deleteShorterner(shorterner.id)" class="delete-btn">
         x
       </button>
-      <button @click="copyLink(transaction.short)" class="btn clipboard-btn">
+      <button @click="copyLink(shorterner.short)" class="btn clipboard-btn">
         Copy
         <span :class="{ 'visible' : isVisible }">URL copied!</span>
       </button>
@@ -22,11 +22,11 @@ import { defineProps } from "vue";
 import { ref } from "vue";
 import { useToast } from "vue-toastification";
 
-const emit = defineEmits(["transactionDeleted"]);
+const emit = defineEmits(["shorternerDeleted"]);
 const toast = useToast();
 
 const props = defineProps({
-  transactions: {
+  shorterners: {
     type: Array,
     required: true,
   },
@@ -35,8 +35,8 @@ const props = defineProps({
 
 // console.log(props)
 
-const deleteTransaction = (id) => {
-  emit("transactionDeleted", id);
+const deleteShorterner = (id) => {
+  emit("shorternerDeleted", id);
 };
 
 // let isVisible = false;
