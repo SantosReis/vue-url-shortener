@@ -2,13 +2,13 @@
 
 Vue 3 frontend to integrate with an API and generate URL Shorteners
 
-## Recommended IDE Setup
+## API Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Create an .env file to connect to an external API
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+```
+VITE_API_URL=https://localhost
+```
 
 ## Project Setup
 
