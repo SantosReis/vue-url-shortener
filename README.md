@@ -1,6 +1,9 @@
 # URL Shortener
 
-Vue 3 frontend to integrate with an API and generate URL Shorteners
+Frontend to generate URL Shorteners. You can integrate with the followings backend API's:
+
+- [laravel11-url-shortener](https://github.com/SantosReis/laravel11-url-shortener)
+- [symfony6-url-shortener](https://github.com/SantosReis/symfony6-url-shortener)
 
 ## API Setup
 
