@@ -2,10 +2,14 @@
   <h3>Add url shortener</h3>
   <form id="form" @submit.prevent="onSubmit">
     <div class="form-control">
-      <input type="text" id="url" v-model="url" placeholder="Enter url address..." />
+      <input
+        type="text"
+        id="url"
+        v-model="url"
+        placeholder="Enter url address..."
+      />
     </div>
-    <div class="form-control">
-    </div>
+    <div class="form-control"></div>
     <button class="btn">Add shortener</button>
   </form>
 </template>
