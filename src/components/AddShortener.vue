@@ -3,8 +3,6 @@
   <DefaultCard cardTitle="Add Shortener">
     <form id="form" @submit.prevent="onSubmit">
       <div class="p-6.5">
-        {{ url }}
-
         <InputGroup
           label="URL"
           id="url"
@@ -31,7 +29,7 @@ import { useToast } from 'vue-toastification'
 import DefaultCard from '@/components/Forms/DefaultCard.vue'
 import InputGroup from '@/components/Forms/InputGroup.vue'
 
-const url = ref('aaa')
+const url = ref()
 const emit = defineEmits(['shorternersSubmitted'])
 const toast = useToast()
 

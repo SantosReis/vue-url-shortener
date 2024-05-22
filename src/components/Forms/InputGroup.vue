@@ -4,16 +4,12 @@ const props = defineProps({
   type: String,
   placeholder: String,
   customClasses: String,
-  // value: String,
   modelValue: String,
   required: {
     type: Boolean,
     default: false
   }
 })
-
-const proxyValue = defineModel()
-const emit = defineEmits(['update:modelValue'])
 </script>
 <template>
   <div :class="props.customClasses">
@@ -25,7 +21,7 @@ const emit = defineEmits(['update:modelValue'])
       :type="props.type"
       :placeholder="props.placeholder"
       class="w-full rounded border-[1.5px] text-black border-stroke bg-transparent py-3 px-5 font-normal outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:text-white dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-      v-model="proxyValue"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
   </div>
 </template>
