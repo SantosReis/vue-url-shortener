@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useAuthStore } from '@/stores/auth'
 
 const target = ref(null)
 const dropdownOpen = ref(false)
 
 onClickOutside(target, () => {
   dropdownOpen.value = false
+})
+
+const authStore = useAuthStore()
+
+onMounted(async () => {
+  await authStore.getUser()
 })
 </script>
 
@@ -18,8 +25,10 @@ onClickOutside(target, () => {
       @click.prevent="dropdownOpen = !dropdownOpen"
     >
       <span class="hidden text-right lg:block">
-        <span class="block text-sm font-medium text-black dark:text-white">Thomas Anree</span>
-        <span class="block text-xs font-medium">UX Designer</span>
+        <span class="block text-sm font-medium text-black dark:text-white">{{
+          authStore.user?.name
+        }}</span>
+        <span class="block text-xs font-medium">{{ authStore.user?.email }}</span>
       </span>
 
       <span class="h-12 w-12 rounded-full">
@@ -77,6 +86,7 @@ onClickOutside(target, () => {
         </li>
       </ul>
       <button
+        @click="authStore.handleLogout"
         class="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
       >
         <svg

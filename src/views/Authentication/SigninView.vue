@@ -5,8 +5,14 @@ import BreadcrumbDefault from '@/components/Breadcrumbs/BreadcrumbDefault.vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
 import { ref } from 'vue'
+import { useAuthStore } from '@/stores/auth'
 
 const pageTitle = ref('Sign In')
+const authStore = useAuthStore()
+const form = ref({
+  email: '',
+  password: ''
+})
 </script>
 
 <template>
@@ -16,8 +22,13 @@ const pageTitle = ref('Sign In')
     <!-- Breadcrumb End -->
 
     <DefaultAuthCard subtitle="Start for free" title="Sign In">
-      <form>
-        <InputGroup label="Email" type="email" placeholder="Enter your email">
+      <form @submit.prevent="authStore.handleLogin(form)">
+        <p>
+          {{ form.email }}
+          {{ form.password }}
+        </p>
+
+        <InputGroup label="Email" type="email" placeholder="Enter your email" v-model="form.email">
           <svg
             class="fill-current"
             width="22"
@@ -35,7 +46,16 @@ const pageTitle = ref('Sign In')
           </svg>
         </InputGroup>
 
-        <InputGroup label="Password" type="password" placeholder="6+ Characters, 1 Capital letter">
+        <div v-if="authStore.errors.email" class="flex">
+          <span class="text-red-400 text-sm m-2 p-2">{{ authStore.errors.email[0] }}</span>
+        </div>
+
+        <InputGroup
+          label="Password"
+          type="password"
+          placeholder="6+ Characters, 1 Capital letter"
+          v-model="form.password"
+        >
           <svg
             class="fill-current"
             width="22"
@@ -56,6 +76,10 @@ const pageTitle = ref('Sign In')
             </g>
           </svg>
         </InputGroup>
+
+        <div v-if="authStore.errors.password" class="flex">
+          <span class="text-red-400 text-sm m-2 p-2">{{ authStore.errors.password[0] }}</span>
+        </div>
 
         <div class="mb-5 mt-6">
           <input

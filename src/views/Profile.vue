@@ -1,10 +1,18 @@
-<script setup lang="ts">
-import { ref } from 'vue'
+<script setup>
+import { ref, onMounted } from 'vue'
 import BreadcrumbDefault from '@/components/Breadcrumbs/BreadcrumbDefault.vue'
 import ProfileCard from '@/components/ProfileCard.vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
+import { useAuthStore } from '../stores/auth'
+
 const pageTitle = ref('Profile')
+
+const authStore = useAuthStore()
+
+onMounted(async () => {
+  await authStore.getUser()
+})
 </script>
 
 <template>
